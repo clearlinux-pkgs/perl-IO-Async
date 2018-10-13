@@ -4,25 +4,17 @@
 #
 Name     : perl-IO-Async
 Version  : 0.72
-Release  : 1
+Release  : 2
 URL      : https://cpan.metacpan.org/authors/id/P/PE/PEVANS/IO-Async-0.72.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PE/PEVANS/IO-Async-0.72.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libi/libio-async-perl/libio-async-perl_0.72-1.debian.tar.xz
 Summary  : 'Asynchronous event-driven programming'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
-Requires: perl-IO-Async-license
-Requires: perl-IO-Async-man
-Requires: perl(Future)
-Requires: perl(Future::Utils)
-Requires: perl(Module::Build)
-Requires: perl(Struct::Dumb)
-Requires: perl(Test::Fatal)
-Requires: perl(Test::Identity)
-Requires: perl(Test::Refcount)
+Requires: perl-IO-Async-license = %{version}-%{release}
+BuildRequires : buildreq-cpan
 BuildRequires : perl(Future)
 BuildRequires : perl(Future::Utils)
-BuildRequires : perl(Module::Build)
 BuildRequires : perl(Struct::Dumb)
 BuildRequires : perl(Test::Fatal)
 BuildRequires : perl(Test::Identity)
@@ -68,6 +60,15 @@ on_connect_error => sub { die "Cannot connect - $_[0] failed $_[-1]\n"; },
 
 $loop->run;
 
+%package dev
+Summary: dev components for the perl-IO-Async package.
+Group: Development
+Provides: perl-IO-Async-devel = %{version}-%{release}
+
+%description dev
+dev components for the perl-IO-Async package.
+
+
 %package license
 Summary: license components for the perl-IO-Async package.
 Group: Default
@@ -76,19 +77,11 @@ Group: Default
 license components for the perl-IO-Async package.
 
 
-%package man
-Summary: man components for the perl-IO-Async package.
-Group: Default
-
-%description man
-man components for the perl-IO-Async package.
-
-
 %prep
-tar -xf %{SOURCE1}
-cd ..
 %setup -q -n IO-Async-0.72
-mkdir -p %{_topdir}/BUILD/IO-Async-0.72/deblicense/
+cd ..
+%setup -q -T -D -n IO-Async-0.72 -b 1
+mkdir -p deblicense/
 mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/IO-Async-0.72/deblicense/
 
 %build
@@ -106,13 +99,13 @@ fi
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/perl-IO-Async
-cp LICENSE %{buildroot}/usr/share/doc/perl-IO-Async/LICENSE
-cp deblicense/copyright %{buildroot}/usr/share/doc/perl-IO-Async/deblicense_copyright
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-IO-Async
+cp LICENSE %{buildroot}/usr/share/package-licenses/perl-IO-Async/LICENSE
+cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-IO-Async/deblicense_copyright
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -121,49 +114,44 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/IO/Async.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Channel.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Debug.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/File.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/FileStream.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Function.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Future.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Handle.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Internals/ChildManager.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Internals/Connector.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Internals/TimeQueue.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Listener.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Loop.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Loop/Poll.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Loop/Select.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/LoopTests.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Notifier.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/OS.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/OS/MSWin32.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/OS/cygwin.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/OS/linux.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/PID.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Process.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Protocol.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Protocol/LineStream.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Protocol/Stream.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Resolver.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Routine.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Signal.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Socket.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Stream.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Test.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Timer.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Timer/Absolute.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Timer/Countdown.pm
-/usr/lib/perl5/site_perl/5.26.1/IO/Async/Timer/Periodic.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Channel.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Debug.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/File.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/FileStream.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Function.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Future.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Handle.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Internals/ChildManager.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Internals/Connector.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Internals/TimeQueue.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Listener.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Loop.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Loop/Poll.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Loop/Select.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/LoopTests.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Notifier.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/OS.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/OS/MSWin32.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/OS/cygwin.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/OS/linux.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/PID.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Process.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Protocol.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Protocol/LineStream.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Protocol/Stream.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Resolver.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Routine.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Signal.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Socket.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Stream.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Test.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Timer.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Timer/Absolute.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Timer/Countdown.pm
+/usr/lib/perl5/vendor_perl/5.26.1/IO/Async/Timer/Periodic.pm
 
-%files license
-%defattr(-,root,root,-)
-/usr/share/doc/perl-IO-Async/LICENSE
-/usr/share/doc/perl-IO-Async/deblicense_copyright
-
-%files man
+%files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/IO::Async.3
 /usr/share/man/man3/IO::Async::Channel.3
@@ -198,3 +186,8 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 /usr/share/man/man3/IO::Async::Timer::Absolute.3
 /usr/share/man/man3/IO::Async::Timer::Countdown.3
 /usr/share/man/man3/IO::Async::Timer::Periodic.3
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-IO-Async/LICENSE
+/usr/share/package-licenses/perl-IO-Async/deblicense_copyright

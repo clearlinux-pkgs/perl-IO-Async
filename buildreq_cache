@@ -1,0 +1,7 @@
+0.72
+perl(Future)
+perl(Future::Utils)
+perl(Struct::Dumb)
+perl(Test::Fatal)
+perl(Test::Identity)
+perl(Test::Refcount)
