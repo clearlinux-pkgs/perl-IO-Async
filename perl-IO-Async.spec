@@ -4,14 +4,19 @@
 #
 Name     : perl-IO-Async
 Version  : 0.74
-Release  : 13
+Release  : 14
 URL      : https://cpan.metacpan.org/authors/id/P/PE/PEVANS/IO-Async-0.74.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PE/PEVANS/IO-Async-0.74.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libi/libio-async-perl/libio-async-perl_0.72-1.debian.tar.xz
-Summary  : Asynchronous event-driven programming
+Summary  : 'Asynchronous event-driven programming'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-IO-Async-license = %{version}-%{release}
+Requires: perl(Future)
+Requires: perl(Future::IO::ImplBase)
+Requires: perl(Future::Utils)
+Requires: perl(Struct::Dumb)
+Requires: perl(Test::Fatal)
 BuildRequires : buildreq-cpan
 BuildRequires : perl(Future)
 BuildRequires : perl(Future::Utils)
@@ -65,7 +70,6 @@ Summary: dev components for the perl-IO-Async package.
 Group: Development
 Provides: perl-IO-Async-devel = %{version}-%{release}
 Requires: perl-IO-Async = %{version}-%{release}
-Requires: perl-IO-Async = %{version}-%{release}
 
 %description dev
 dev components for the perl-IO-Async package.
@@ -90,7 +94,7 @@ cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/IO-Async-0.74/deblicense/
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
