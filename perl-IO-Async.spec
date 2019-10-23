@@ -4,19 +4,21 @@
 #
 Name     : perl-IO-Async
 Version  : 0.74
-Release  : 14
+Release  : 15
 URL      : https://cpan.metacpan.org/authors/id/P/PE/PEVANS/IO-Async-0.74.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PE/PEVANS/IO-Async-0.74.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libi/libio-async-perl/libio-async-perl_0.72-1.debian.tar.xz
 Summary  : 'Asynchronous event-driven programming'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
+Requires: perl-IO-Async-data = %{version}-%{release}
 Requires: perl-IO-Async-license = %{version}-%{release}
 Requires: perl(Future)
 Requires: perl(Future::IO::ImplBase)
 Requires: perl(Future::Utils)
 Requires: perl(Struct::Dumb)
 Requires: perl(Test::Fatal)
+Requires: perl(Test::Refcount)
 BuildRequires : buildreq-cpan
 BuildRequires : perl(Future)
 BuildRequires : perl(Future::Utils)
@@ -65,9 +67,18 @@ on_connect_error => sub { die "Cannot connect - $_[0] failed $_[-1]\n"; },
 
 $loop->run;
 
+%package data
+Summary: data components for the perl-IO-Async package.
+Group: Data
+
+%description data
+data components for the perl-IO-Async package.
+
+
 %package dev
 Summary: dev components for the perl-IO-Async package.
 Group: Development
+Requires: perl-IO-Async-data = %{version}-%{release}
 Provides: perl-IO-Async-devel = %{version}-%{release}
 Requires: perl-IO-Async = %{version}-%{release}
 
@@ -106,8 +117,8 @@ fi
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-IO-Async
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-IO-Async/LICENSE
-cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-IO-Async/deblicense_copyright
+cp %{_builddir}/IO-Async-0.74/LICENSE %{buildroot}/usr/share/package-licenses/perl-IO-Async/ae5457947130c5a7a05fc82ca7baf0570bf57d00
+cp %{_builddir}/IO-Async-0.74/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-IO-Async/127f6e9fcb6e6f60b441ea9af1efde0780d0f249
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -119,6 +130,9 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 %{_fixperms} %{buildroot}/*
 
 %files
+%defattr(-,root,root,-)
+
+%files data
 %defattr(-,root,root,-)
 /usr/lib/perl5/vendor_perl/5.28.2/Future/IO/Impl/IOAsync.pm
 /usr/lib/perl5/vendor_perl/5.28.2/IO/Async.pm
@@ -197,5 +211,5 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-IO-Async/LICENSE
-/usr/share/package-licenses/perl-IO-Async/deblicense_copyright
+/usr/share/package-licenses/perl-IO-Async/127f6e9fcb6e6f60b441ea9af1efde0780d0f249
+/usr/share/package-licenses/perl-IO-Async/ae5457947130c5a7a05fc82ca7baf0570bf57d00
