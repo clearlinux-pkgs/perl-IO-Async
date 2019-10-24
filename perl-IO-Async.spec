@@ -4,15 +4,15 @@
 #
 Name     : perl-IO-Async
 Version  : 0.74
-Release  : 15
+Release  : 16
 URL      : https://cpan.metacpan.org/authors/id/P/PE/PEVANS/IO-Async-0.74.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PE/PEVANS/IO-Async-0.74.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libi/libio-async-perl/libio-async-perl_0.72-1.debian.tar.xz
 Summary  : 'Asynchronous event-driven programming'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
-Requires: perl-IO-Async-data = %{version}-%{release}
 Requires: perl-IO-Async-license = %{version}-%{release}
+Requires: perl-IO-Async-perl = %{version}-%{release}
 Requires: perl(Future)
 Requires: perl(Future::IO::ImplBase)
 Requires: perl(Future::Utils)
@@ -67,18 +67,9 @@ on_connect_error => sub { die "Cannot connect - $_[0] failed $_[-1]\n"; },
 
 $loop->run;
 
-%package data
-Summary: data components for the perl-IO-Async package.
-Group: Data
-
-%description data
-data components for the perl-IO-Async package.
-
-
 %package dev
 Summary: dev components for the perl-IO-Async package.
 Group: Development
-Requires: perl-IO-Async-data = %{version}-%{release}
 Provides: perl-IO-Async-devel = %{version}-%{release}
 Requires: perl-IO-Async = %{version}-%{release}
 
@@ -92,6 +83,15 @@ Group: Default
 
 %description license
 license components for the perl-IO-Async package.
+
+
+%package perl
+Summary: perl components for the perl-IO-Async package.
+Group: Default
+Requires: perl-IO-Async = %{version}-%{release}
+
+%description perl
+perl components for the perl-IO-Async package.
 
 
 %prep
@@ -131,46 +131,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-
-%files data
-%defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/Future/IO/Impl/IOAsync.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Channel.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Debug.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/File.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/FileStream.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Function.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Future.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Handle.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Internals/ChildManager.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Internals/Connector.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Internals/TimeQueue.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Listener.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Loop.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Loop/Poll.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Loop/Select.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/LoopTests.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Notifier.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/OS.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/OS/MSWin32.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/OS/cygwin.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/OS/linux.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/PID.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Process.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Protocol.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Protocol/LineStream.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Protocol/Stream.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Resolver.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Routine.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Signal.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Socket.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Stream.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Test.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Timer.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Timer/Absolute.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Timer/Countdown.pm
-/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Timer/Periodic.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -213,3 +173,43 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/perl-IO-Async/127f6e9fcb6e6f60b441ea9af1efde0780d0f249
 /usr/share/package-licenses/perl-IO-Async/ae5457947130c5a7a05fc82ca7baf0570bf57d00
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.28.2/Future/IO/Impl/IOAsync.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Channel.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Debug.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/File.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/FileStream.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Function.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Future.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Handle.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Internals/ChildManager.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Internals/Connector.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Internals/TimeQueue.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Listener.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Loop.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Loop/Poll.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Loop/Select.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/LoopTests.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Notifier.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/OS.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/OS/MSWin32.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/OS/cygwin.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/OS/linux.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/PID.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Process.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Protocol.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Protocol/LineStream.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Protocol/Stream.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Resolver.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Routine.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Signal.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Socket.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Stream.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Test.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Timer.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Timer/Absolute.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Timer/Countdown.pm
+/usr/lib/perl5/vendor_perl/5.28.2/IO/Async/Timer/Periodic.pm
