@@ -4,7 +4,7 @@
 #
 Name     : perl-IO-Async
 Version  : 0.76
-Release  : 20
+Release  : 21
 URL      : https://cpan.metacpan.org/authors/id/P/PE/PEVANS/IO-Async-0.76.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PE/PEVANS/IO-Async-0.76.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libi/libio-async-perl/libio-async-perl_0.72-1.debian.tar.xz
@@ -18,6 +18,7 @@ Requires: perl(Future::IO::ImplBase)
 Requires: perl(Future::Utils)
 Requires: perl(Struct::Dumb)
 Requires: perl(Test::Fatal)
+Requires: perl(Test::Metrics::Any)
 Requires: perl(Test::Refcount)
 BuildRequires : buildreq-cpan
 BuildRequires : perl(Future)
@@ -25,6 +26,7 @@ BuildRequires : perl(Future::Utils)
 BuildRequires : perl(Struct::Dumb)
 BuildRequires : perl(Test::Fatal)
 BuildRequires : perl(Test::Identity)
+BuildRequires : perl(Test::Metrics::Any)
 BuildRequires : perl(Test::Refcount)
 
 %description
