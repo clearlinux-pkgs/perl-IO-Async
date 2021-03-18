@@ -4,7 +4,7 @@
 #
 Name     : perl-IO-Async
 Version  : 0.78
-Release  : 24
+Release  : 25
 URL      : https://cpan.metacpan.org/authors/id/P/PE/PEVANS/IO-Async-0.78.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PE/PEVANS/IO-Async-0.78.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libi/libio-async-perl/libio-async-perl_0.72-1.debian.tar.xz
@@ -180,41 +180,41 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.3/Future/IO/Impl/IOAsync.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Channel.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Debug.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/File.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/FileStream.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Function.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Future.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Handle.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Internals/ChildManager.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Internals/Connector.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Internals/TimeQueue.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Listener.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Loop.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Loop/Poll.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Loop/Select.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/LoopTests.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Metrics.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Notifier.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/OS.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/OS/MSWin32.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/OS/cygwin.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/OS/linux.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/PID.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Process.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Protocol.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Protocol/LineStream.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Protocol/Stream.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Resolver.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Routine.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Signal.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Socket.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Stream.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Test.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Timer.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Timer/Absolute.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Timer/Countdown.pm
-/usr/lib/perl5/vendor_perl/5.30.3/IO/Async/Timer/Periodic.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Future/IO/Impl/IOAsync.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Channel.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Debug.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/File.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/FileStream.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Function.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Future.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Handle.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Internals/ChildManager.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Internals/Connector.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Internals/TimeQueue.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Listener.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Loop.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Loop/Poll.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Loop/Select.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/LoopTests.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Metrics.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Notifier.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/OS.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/OS/MSWin32.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/OS/cygwin.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/OS/linux.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/PID.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Process.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Protocol.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Protocol/LineStream.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Protocol/Stream.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Resolver.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Routine.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Signal.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Socket.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Stream.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Test.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Timer.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Timer/Absolute.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Timer/Countdown.pm
+/usr/lib/perl5/vendor_perl/5.32.1/IO/Async/Timer/Periodic.pm
