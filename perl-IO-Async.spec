@@ -4,7 +4,7 @@
 #
 Name     : perl-IO-Async
 Version  : 0.802
-Release  : 38
+Release  : 39
 URL      : https://cpan.metacpan.org/authors/id/P/PE/PEVANS/IO-Async-0.802.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PE/PEVANS/IO-Async-0.802.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libi/libio-async-perl/libio-async-perl_0.72-1.debian.tar.xz
