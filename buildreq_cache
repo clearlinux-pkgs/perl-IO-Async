@@ -1,9 +1,6 @@
-0.802
+0.803
 perl(Future)
 perl(Future::Utils)
 perl(Struct::Dumb)
-perl(Test::Fatal)
 perl(Test::Future::IO::Impl)
-perl(Test::Identity)
 perl(Test::Metrics::Any)
-perl(Test::Refcount)
