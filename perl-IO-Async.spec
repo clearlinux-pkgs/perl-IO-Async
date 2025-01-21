@@ -7,7 +7,7 @@
 #
 Name     : perl-IO-Async
 Version  : 0.803
-Release  : 42
+Release  : 43
 URL      : https://cpan.metacpan.org/authors/id/P/PE/PEVANS/IO-Async-0.803.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PE/PEVANS/IO-Async-0.803.tar.gz
 Summary  : 'Asynchronous event-driven programming'
